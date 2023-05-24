@@ -1,0 +1,13 @@
+        public static List<Usuari> SelectProfesorByGroup(Grup grup)
+        {
+            List<Usuari> profesors = new List<Usuari>();
+            profesors = (
+                from c in Orm.bd.Usuari
+                join x in Orm.bd.ProfesorsModulGrup on c.id_profesor equals x.id_tutor
+                where x.id_grup == grup.id_grup
+                select c
+
+                ).ToList();
+
+            return profesors;
+        }
